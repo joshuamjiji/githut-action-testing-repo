@@ -27,14 +27,20 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew build
+      
+    - name: Authenticate to Google cloud
+      uses: google-github-actions/auth@v0
+      with:
+        credentials_json: ${{ secrets.GCLOUD_SA_JSON_KEY }}
+        
 
     - name: "Building and pushing the image"
       uses: RafikFarhad/push-to-gcr-github-action@v4.1
       with:
         gcloud_service_key: ${{ secrets.GCLOUD_SA_JSON_KEY }}
-        registry: asia.gcr.io/goldengate-1/gcr-script
+        registry: asia.gcr.io
         project_id: goldengate-1
-        image_name: hello-world-by-push-to-gcr
+        image_name: ga-gcr-push-image
         image_tag: test-${{ github.sha }}, ${{ github.sha }}
         dockerfile: Dockerfile
         context: ./docker
