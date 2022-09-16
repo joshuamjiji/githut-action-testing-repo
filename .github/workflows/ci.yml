@@ -28,22 +28,14 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-
-  build-and-push-to-gcr:
-  
-    name: "Building and pushing images"
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: "Building and pushing the image"
-        uses: ./
-        with:
-          gcloud_service_key: ${{ secrets.GCLOUD_SA_JSON_KEY }}
-          registry: asia.gcr.io/goldengate-1/gcr-script
-          project_id: goldengate-1
-          image_name: hello-world-by-push-to-gcr
-          image_tag: test-${{ github.sha }}, ${{ github.sha }}
-          dockerfile: ./test/Dockerfile.test
-          context: ./test
-          target: build
+    - name: "Building and pushing the image"
+      uses: ./
+      with:
+        gcloud_service_key: ${{ secrets.GCLOUD_SA_JSON_KEY }}
+        registry: asia.gcr.io/goldengate-1/gcr-script
+        project_id: goldengate-1
+        image_name: hello-world-by-push-to-gcr
+        image_tag: test-${{ github.sha }}, ${{ github.sha }}
+        dockerfile: ./Dockerfile
+        context: ./docker
+        target: build
