@@ -38,6 +38,15 @@ jobs:
 
     - name: 'Use gcloud CLI'
       run: 'gcloud info'
+      
+    - name: 'Building the docker image'
+      run: docker build -t asia.gcr.io/goldengate-1/gcr-script-2:$GITHUB_SHA .
+      
+    - name: Configuring the docker to use gcloud cli
+      run: gcloud auth configure-docker
+      
+    - name: Pushing the image to Container registry
+      run: docker push asia.gcr.io/goldengate-1/gcr-script-2:$GITHUB_SHA
         
 
 #     - name: "Building and pushing the image"
