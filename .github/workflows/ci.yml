@@ -29,7 +29,7 @@ jobs:
       run: ./gradlew build
 
     - name: "Building and pushing the image"
-      uses: ./
+      uses: RafikFarhad/push-to-gcr-github-action@v4.1
       with:
         gcloud_service_key: ${{ secrets.GCLOUD_SA_JSON_KEY }}
         registry: asia.gcr.io/goldengate-1/gcr-script
