@@ -36,6 +36,6 @@ jobs:
         project_id: goldengate-1
         image_name: hello-world-by-push-to-gcr
         image_tag: test-${{ github.sha }}, ${{ github.sha }}
-        dockerfile: ./Dockerfile
+        dockerfile: Dockerfile
         context: ./docker
         target: build
