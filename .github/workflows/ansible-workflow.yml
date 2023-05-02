@@ -10,7 +10,6 @@ on:
 jobs:
   run-playbook:
     runs-on: ubuntu-latest
-		needs: [ validate ]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
