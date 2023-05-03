@@ -24,8 +24,8 @@ jobs:
   run-playbook:
     runs-on: ubuntu-latest
     steps:
-      - name: IP addr of the runner
-        run: curl ifconfig.io
+      - name: Getting docker version
+        run: docker --version
         
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
