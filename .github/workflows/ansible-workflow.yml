@@ -18,6 +18,8 @@ jobs:
           node-version: 16.x
       - run: npm install
         working-directory: ./nodejs-app
+      - run: ls -al
+        working-directory: ./nodejs-app
 
   run-playbook:
     runs-on: ubuntu-latest
