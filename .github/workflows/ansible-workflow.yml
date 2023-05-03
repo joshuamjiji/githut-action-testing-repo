@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v2.5.2
         with:
           node-version: 16.x
-      - run: npm build
+      - run: npm install
         working-directory: ./nodejs-app
 
   run-playbook:
