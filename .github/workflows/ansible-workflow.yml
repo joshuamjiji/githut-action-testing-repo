@@ -38,5 +38,6 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
       - name: run playbook
-      - run: whoami
-      - run: ansible-playbook -i inventory ansible/nodeapp-playbook.yml
+        run: |
+          whoami
+          ansible-playbook -i inventory ansible/nodeapp-playbook.yml
