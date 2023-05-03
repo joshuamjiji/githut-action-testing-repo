@@ -3,7 +3,7 @@
     - name: copy Dockerfile
       copy:
         src: ./Dockerfile
-        dest: /root/nodejs-app/Dockerfile
+        dest: ./nodejs-app/Dockerfile
         owner: root
         group: root
         mode: '0644'
@@ -11,7 +11,7 @@
       docker_image:
         name: nodejs-app:latest
         build:
-          path: /root/nodejs-app
+          path: ./nodejs-app
           source: build
         state: present
     - name: run container
