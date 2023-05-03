@@ -17,8 +17,9 @@ jobs:
         with:
           node-version: 16.x
       - run: npm ci
+        working-directory: ./nodejs-app
       - run: npm build
-      - working-directory: /nodejs-app
+        working-directory: ./nodejs-app
 
   run-playbook:
     runs-on: ubuntu-latest
