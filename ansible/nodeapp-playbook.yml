@@ -8,13 +8,13 @@
       docker_image:
         name: nodejs-app:latest
         build:
-          path: ./nodejs-app
+          path: /home/runner/work/githut-action-testing-repo/githut-action-testing-repo/nodejs-app
           source: build
         state: present
     - name: run container
       docker_container:
-        image: nginx:stable
-        name: nginx
+        image: nodejs-app:latest
+        name: node
         state: started
         auto_remove: true
         ports:
