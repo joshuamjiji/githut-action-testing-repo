@@ -1,4 +1,4 @@
-name: Ansible Docker Swarm
+name: Ansible Docker Action
 
 on:
 #   push:
