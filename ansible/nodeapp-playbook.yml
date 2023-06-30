@@ -20,9 +20,7 @@
         auto_remove: true
         ports:
           - "49160:8080"
-          
-    - debug: testing variables
-      msg: 
-        - "My name is {{ USER_NAME }}"
-        - "This is {{ COURSE }} tutorial"
-        - "We are learning about {{ CHAPTER }}"
+
+    - name: printing variables
+      debug:
+        msg: "My name is {{ USER_NAME }}. This is {{ COURSE }} tutorial. We are learning about {{ CHAPTER }}"
