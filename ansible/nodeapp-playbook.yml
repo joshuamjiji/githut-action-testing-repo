@@ -1,5 +1,5 @@
 - hosts: localhost
-  vars_files: variables.yml
+  vars_files: /ansible/group_vars/variables.yml
   tasks:
     - name: copy Dockerfile
       copy:
