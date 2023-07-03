@@ -23,6 +23,6 @@
         ports:
           - "49160:8080"
 
-    - name: printing variables
-      debug:
-        msg: "The environment is {{ ENV }} with Node version {{ NODE }}"
+    # - name: printing variables
+    #   debug:
+    #     msg: "The environment is {{ ENV }} with Node version {{ NODE }}"
