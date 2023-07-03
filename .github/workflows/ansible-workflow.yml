@@ -6,6 +6,23 @@ on:
 #   pull_request:
 #     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run the application'
+        required: true
+        default: 'stage'
+        type: choice
+        options:
+        - prod
+        - stage
+      nodeversion:
+        description: 'Select the Node version'
+        required: true
+        default: '14.x'
+        type: choice
+        options:
+        - 16.x
+        - 14.x
 
 jobs:
   build:
@@ -15,7 +32,7 @@ jobs:
       - name: Setup Node.js env
         uses: actions/setup-node@v2.5.2
         with:
-          node-version: 16.x
+          node-version: ${{ inputs.nodeversion }}
       - run: npm install
         working-directory: ./nodejs-app
       - run: ls -al
