@@ -50,7 +50,7 @@ jobs:
         run: curl -i stage.app.com:49160
 
   production:
-    if: ${{ always() inputs.environment == 'prod' }}
+    if: ${{ always() && inputs.environment == 'prod' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
