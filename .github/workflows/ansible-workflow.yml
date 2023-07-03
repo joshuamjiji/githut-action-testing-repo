@@ -57,6 +57,7 @@ jobs:
         with:
           name: variables
           path: ansible/variables.yml
+      - run: cat ansible/variables.yml
 
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
