@@ -1,4 +1,4 @@
-name: 'Deploy to Node application'
+name: 'Deploy Node application to staging environment'
 description: 'Deploys an node application using ansible'
 
 runs:

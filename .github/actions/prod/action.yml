@@ -1,4 +1,4 @@
-name: 'Deploy to Node application to production'
+name: 'Deploy Node application to production environment'
 description: 'Deploys an node application using ansible'
 
 runs:
