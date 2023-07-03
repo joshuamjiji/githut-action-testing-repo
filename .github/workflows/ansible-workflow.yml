@@ -29,6 +29,7 @@ jobs:
         working-directory: ./nodejs-app
       - run: ls -al
         working-directory: ./nodejs-app
+      - run : echo "${{ inputs.environment }}"
 
   staging:
     if: ${{ inputs.environment }} == stage
