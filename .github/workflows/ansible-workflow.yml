@@ -31,10 +31,10 @@ jobs:
         working-directory: ./nodejs-app
 
   staging:
+    if: ${{ inputs.environment }} == 'stage'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        if: ${{ inputs.environment }} == 'stage'
 
       - name: Deploying application
         uses: ./.github/actions/stage/
@@ -48,11 +48,11 @@ jobs:
         run: curl -i stage.app.com:49160
 
   production:
+    if: ${{ inputs.environment }} == 'prod'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        if: ${{ inputs.environment }} == 'prod'
-        
+
       - name: Deploying application
         uses: ./.github/actions/stage/
 
