@@ -59,12 +59,11 @@ jobs:
       - name: Listing all ansible inventory
         run: |
           ansible-inventory -i inventory --list
-          cat /etc/ansible/hosts
       
       - name: Running ansible playbook
         run: |
           whoami
-          ansible-playbook -i inventory ansible/nodeapp-playbook.yml
+          ansible-playbook --connection=local -i ansible_hosts --inventory 127.0.0.1, ansible/nodeapp-playbook.yml
       
       - name: Testing container
         run: curl -i stage:49160
