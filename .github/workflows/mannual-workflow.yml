@@ -26,9 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "Log level: $LEVEL"
-          echo "Tags: $TAGS"
-          echo "Environment: $ENVIRONMENT"
+          echo "Log level: $LEVEL" >> .env
+          echo "Tags: $TAGS" >> .env
+          echo "Environment: $ENVIRONMENT" >> .env
         env:
           LEVEL: ${{ inputs.logLevel }}
           TAGS: ${{ inputs.tags }}
