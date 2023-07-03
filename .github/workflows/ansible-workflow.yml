@@ -24,14 +24,14 @@ jobs:
       - name: Setup Node.js env
         uses: actions/setup-node@v2.5.2
         with:
-          node-version: ${{ inputs.nodeversion }}
+          node-version: 16.x
       - run: npm install
         working-directory: ./nodejs-app
       - run: ls -al
         working-directory: ./nodejs-app
 
   staging:
-    if: ${{ inputs.environment }} == 'stage'
+    if: ${{ inputs.environment }} == stage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -48,7 +48,7 @@ jobs:
         run: curl -i stage.app.com:49160
 
   production:
-    if: ${{ inputs.environment }} == 'prod'
+    if: ${{ inputs.environment }} == prod
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
