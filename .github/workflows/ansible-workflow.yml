@@ -56,9 +56,9 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
 
-      - name: Listing all host in runner
+      - name: Adding host in runner
         run: |
-          cat /etc/hosts
+          sudo echo "127.0.0.1:49160 stage.app.com" | sudo tee -a /etc/hosts
       
       - name: Running ansible playbook
         run: |
@@ -66,4 +66,4 @@ jobs:
           ansible-playbook --connection=local --inventory 127.0.0.1, ansible/nodeapp-playbook.yml
       
       - name: Testing container
-        run: curl -i 127.0.0.1:49160
+        run: curl -i stage.app.com
