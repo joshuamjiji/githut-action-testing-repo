@@ -1,5 +1,2 @@
-[stage]
 stage.app ansible_connection=local
-
-[prod]
 prod.app ansible_connection=local
