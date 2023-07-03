@@ -59,7 +59,7 @@ jobs:
       - name: Running ansible playbook
         run: |
           whoami
-          ansible-playbook -i inventory ansible/nodeapp-playbook.yml
+          ansible-playbook -i inventory/stage ansible/nodeapp-playbook.yml
       
       - name: Testing container
-        run: curl -i localhost:49160
+        run: curl -i stage.app:49160

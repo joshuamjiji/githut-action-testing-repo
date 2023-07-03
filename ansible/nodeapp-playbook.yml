@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: stage
   vars_files: variables.yml
   tasks:
     - name: copy Dockerfile
