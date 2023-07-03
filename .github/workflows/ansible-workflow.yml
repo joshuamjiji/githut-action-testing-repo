@@ -59,7 +59,7 @@ jobs:
       - name: Listing all ansible inventory
         run: |
           ansible-inventory -i inventory --list
-          ansible stage.app -m ping
+          ansible localhost -m ping
       
       - name: Running ansible playbook
         run: |
