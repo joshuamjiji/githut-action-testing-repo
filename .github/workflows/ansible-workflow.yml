@@ -66,4 +66,4 @@ jobs:
           ansible-playbook --connection=local --inventory 127.0.0.1, ansible/nodeapp-playbook.yml
       
       - name: Testing container
-        run: curl -i stage:49160
+        run: curl -i 127.0.0.1:49160
