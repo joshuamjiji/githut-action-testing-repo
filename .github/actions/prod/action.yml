@@ -1,4 +1,4 @@
-name: 'Deploy to Node application'
+name: 'Deploy to Node application to production'
 description: 'Deploys an node application using ansible'
 
 runs:
@@ -24,4 +24,4 @@ runs:
       - name: Running ansible playbook
         shell: bash
         run: |
-          ansible-playbook --connection=local --inventory 127.0.0.1, ansible/stage-nodeapp-playbook.yml
+          ansible-playbook --connection=local --inventory 127.0.0.1, ansible/prod-nodeapp-playbook.yml
