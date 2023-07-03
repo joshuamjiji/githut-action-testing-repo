@@ -1,2 +1,2 @@
-stage.app:49160 ansible_connection=local
-prod.app:49160 ansible_connection=local
+stage ansible_connection=local
+prod ansible_connection=local

@@ -59,12 +59,12 @@ jobs:
       - name: Listing all ansible inventory
         run: |
           ansible-inventory -i inventory --list
-          ansible localhost -m ping
+          ansible stage -m ping
       
       - name: Running ansible playbook
         run: |
           whoami
-          ansible-playbook -i inventory/stage ansible/nodeapp-playbook.yml
+          ansible-playbook -i inventory ansible/nodeapp-playbook.yml
       
       - name: Testing container
-        run: curl -i localhost:49160
+        run: curl -i stage:49160
