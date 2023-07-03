@@ -46,8 +46,8 @@ jobs:
 
       - name: Copying the inputs to the variables.yml file
         run: |
-          echo "ENV: $stage_prod" >> ansible/variables.yml
-          echo "NODE: $nodev" >> ansible/variables.yml
+          echo "ENV: $stage_prod" >> ./ansible/variables.yml
+          echo "NODE: $nodev" >> ./ansible/variables.yml
 
         env:
           stage_prod: ${{ inputs.environment }}
