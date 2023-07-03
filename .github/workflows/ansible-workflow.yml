@@ -45,21 +45,6 @@ jobs:
         run: docker --version
 
       - uses: actions/checkout@v3
-      - run: |
-          echo "ENV: $stage_prod" >> variables.yml
-          echo "NODE: $nodev" >> variables.yml
-        env:
-          stage_prod: ${{ inputs.environment }}
-          nodev: ${{ inputs.nodeversion}}
-        
-      - name: Copying the inputs to the variables.yml file
-        uses: actions/upload-artifact@v3
-        with:
-          name: variables
-          path: ansible/variables.yml
-      - run: cat ansible/variables.yml
-
-      - uses: actions/checkout@v3
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
@@ -70,16 +55,11 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
-      
-      - name: Downloading artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: variables
-      -  run : cp variables.yml ansible/variables.yml
 
       - name: Running ansible playbook
         run: |
           whoami
           ansible-playbook -i inventory ansible/nodeapp-playbook.yml
+      
       - name: Testing container
         run: curl -i localhost:49160
