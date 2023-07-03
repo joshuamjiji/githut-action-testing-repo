@@ -67,4 +67,4 @@ jobs:
           ansible-playbook -i inventory/stage ansible/nodeapp-playbook.yml
       
       - name: Testing container
-        run: curl -i stage.app:49160
+        run: curl -i localhost:49160
