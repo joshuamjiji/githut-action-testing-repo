@@ -74,7 +74,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: variables
-          path: ansible
+          path: ansible/variables.yml
       -  run : ls -p ansible/
 
       - name: Running ansible playbook
