@@ -63,11 +63,18 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
+      
       - name: Install dependencies Including Ansible
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+      
+      - name: Downloading artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: variables
+
       - name: Running ansible playbook
         run: |
           whoami
