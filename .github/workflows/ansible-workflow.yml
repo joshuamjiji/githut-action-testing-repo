@@ -44,6 +44,7 @@ jobs:
       - name: Getting docker version
         run: docker --version
 
+      - uses: actions/checkout@v3
       - name: Copying the inputs to the variables.yml file
         run: |
           echo "ENV: $stage_prod" >> variables.yml
