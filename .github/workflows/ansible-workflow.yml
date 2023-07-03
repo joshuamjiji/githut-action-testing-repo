@@ -31,7 +31,7 @@ jobs:
         working-directory: ./nodejs-app
 
   staging:
-    if: ${{ inputs.environment }} == stage
+    if: ${{ inputs.environment == stage }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -48,7 +48,7 @@ jobs:
         run: curl -i stage.app.com:49160
 
   production:
-    if: ${{ inputs.environment }} == prod
+    if: ${{ inputs.environment == prod }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
