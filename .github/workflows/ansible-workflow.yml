@@ -57,7 +57,9 @@ jobs:
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
 
       - name: Listing all ansible inventory
-        run: ansible-inventory -i inventory --list
+        run: |
+          ansible-inventory -i inventory --list
+          ansible stage.app -m ping
       
       - name: Running ansible playbook
         run: |
