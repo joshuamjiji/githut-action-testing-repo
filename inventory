@@ -1,5 +1,5 @@
 [stage]
-stage.app ansible_host=127.0.0.1
+stage.app ansible_connection=local
 
 [prod]
-prod.app ansible_host=127.0.0.1
+prod.app ansible_connection=local
