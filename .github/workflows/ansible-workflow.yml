@@ -32,7 +32,8 @@ jobs:
       - run : echo "${{ inputs.environment }}"
 
   staging:
-    if: ${{ inputs.environment == 'stage' }}
+    if: ${{ always() && inputs.environment == 'stage' }}
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -49,7 +50,8 @@ jobs:
         run: curl -i stage.app.com:49160
 
   production:
-    if: ${{ inputs.environment == 'prod' }}
+    if: ${{ always() inputs.environment == 'prod' }}
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
