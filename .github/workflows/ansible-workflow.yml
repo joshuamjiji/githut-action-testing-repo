@@ -59,7 +59,7 @@ jobs:
       - name: Listing all ansible inventory
         run: |
           ansible-inventory -i inventory --list
-          ansible stage -m ping
+          cat /etc/ansible/hosts
       
       - name: Running ansible playbook
         run: |
