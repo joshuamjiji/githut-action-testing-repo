@@ -38,27 +38,13 @@ jobs:
       - run: ls -al
         working-directory: ./nodejs-app
 
-  run-playbook:
+  stage:
     runs-on: ubuntu-latest
     steps:
-      - name: Getting docker version
-        run: docker --version
-
       - uses: actions/checkout@v3
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-      
-      - name: Install dependencies Including Ansible
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
-      
-      - name: Running ansible playbook
-        run: |
-          ansible-playbook --connection=local --inventory 127.0.0.1, ansible/nodeapp-playbook.yml
+      - name: Deploying application
+        uses: ./.github/actions/stage/
+        if: ${{ inputs.environment }} == 'stage'
 
       - name: Adding host in runner
         run: |
@@ -67,3 +53,34 @@ jobs:
       
       - name: Testing container
         run: curl -i stage.app.com:49160
+        
+
+  # run-playbook:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Getting docker version
+  #       run: docker --version
+
+  #     - uses: actions/checkout@v3
+  #     - name: Set up Python 3.9
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: 3.9
+      
+  #     - name: Install dependencies Including Ansible
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+  #         if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+      
+  #     - name: Running ansible playbook
+  #       run: |
+  #         ansible-playbook --connection=local --inventory 127.0.0.1, ansible/nodeapp-playbook.yml
+
+  #     - name: Adding host in runner
+  #       run: |
+  #         sudo echo "127.0.0.1 stage.app.com" | sudo tee -a /etc/hosts
+  #         cat /etc/hosts
+      
+  #     - name: Testing container
+  #       run: curl -i stage.app.com:49160

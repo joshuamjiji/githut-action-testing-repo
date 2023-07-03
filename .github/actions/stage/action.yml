@@ -1,0 +1,27 @@
+name: 'Deploy to Node application'
+description: 'Deploys an node application using ansible'
+
+runs:
+  using: composite
+  steps:
+      - name: Getting docker version
+        shell: bash
+        run: docker --version
+
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      
+      - name: Install dependencies Including Ansible
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+      
+      - name: Running ansible playbook
+        shell: bash
+        run: |
+          ansible-playbook --connection=local --inventory 127.0.0.1, ansible/nodeapp-playbook.yml
