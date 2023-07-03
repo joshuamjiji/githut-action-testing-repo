@@ -15,14 +15,6 @@ on:
         options:
         - prod
         - stage
-      nodeversion:
-        description: 'Select the Node version'
-        required: true
-        default: '14.x'
-        type: choice
-        options:
-        - 16.x
-        - 14.x
 
 jobs:
   build:
