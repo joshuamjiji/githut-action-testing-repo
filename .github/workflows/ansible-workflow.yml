@@ -55,15 +55,15 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
-
-      - name: Adding host in runner
-        run: |
-          sudo echo "127.0.0.1:49160 stage.app.com" | sudo tee -a /etc/hosts
       
       - name: Running ansible playbook
         run: |
-          whoami
           ansible-playbook --connection=local --inventory 127.0.0.1, ansible/nodeapp-playbook.yml
+
+      - name: Adding host in runner
+        run: |
+          sudo echo "127.0.0.1 stage.app.com" | sudo tee -a /etc/hosts
+          cat /etc/hosts
       
       - name: Testing container
-        run: curl -i stage.app.com
+        run: curl -i stage.app.com:49160
