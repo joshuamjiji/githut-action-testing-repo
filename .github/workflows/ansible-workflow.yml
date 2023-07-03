@@ -45,14 +45,18 @@ jobs:
         run: docker --version
 
       - uses: actions/checkout@v3
-      - name: Copying the inputs to the variables.yml file
-        run: |
+      - run: |
           echo "ENV: $stage_prod" >> variables.yml
           echo "NODE: $nodev" >> variables.yml
-        working-directory: ansible
         env:
           stage_prod: ${{ inputs.environment }}
           nodev: ${{ inputs.nodeversion}}
+        
+      - name: Copying the inputs to the variables.yml file
+        uses: actions/upload-artifact@v3
+        with:
+          name: variables
+          path: ansible/variables.yml
 
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
