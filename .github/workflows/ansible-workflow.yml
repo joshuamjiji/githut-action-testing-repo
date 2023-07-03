@@ -48,7 +48,7 @@ jobs:
         run: |
           echo "ENV: $stage_prod" >> variables.yml
           echo "NODE: $nodev" >> variables.yml
-        working-directory: ./ansible
+        working-directory: ansible
         env:
           stage_prod: ${{ inputs.environment }}
           nodev: ${{ inputs.nodeversion}}
