@@ -38,7 +38,7 @@ jobs:
       - run: ls -al
         working-directory: ./nodejs-app
 
-  stage:
+  staging:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -53,6 +53,22 @@ jobs:
       
       - name: Testing container
         run: curl -i stage.app.com:49160
+
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploying application
+        uses: ./.github/actions/stage/
+        if: ${{ inputs.environment }} == 'prod'
+
+      - name: Adding host in runner
+        run: |
+          sudo echo "127.0.0.1 prod.app.com" | sudo tee -a /etc/hosts
+          cat /etc/hosts
+      
+      - name: Testing container
+        run: curl -i prod.app.com:49160
         
 
   # run-playbook:
