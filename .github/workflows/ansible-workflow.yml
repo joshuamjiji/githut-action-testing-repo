@@ -43,7 +43,16 @@ jobs:
     steps:
       - name: Getting docker version
         run: docker --version
-        
+
+      - name: Copying the inputs to the variables.yml file
+        run: |
+          echo "ENV: $stage_prod" >> variables.yml
+          echo "NODE: $nodev" >> variables.yml
+
+        env:
+          stage_prod: ${{ inputs.environment }}
+          nodev: ${{ inputs.nodeversion}}
+
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
         uses: actions/setup-python@v2

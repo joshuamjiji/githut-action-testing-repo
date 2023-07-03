@@ -25,4 +25,4 @@
 
     - name: printing variables
       debug:
-        msg: "My name is {{ USER_NAME }}. This is {{ COURSE }} tutorial. We are learning about {{ CHAPTER }}"
+        msg: "The environment is {{ ENV }} with Node version {{ NODE }}"
